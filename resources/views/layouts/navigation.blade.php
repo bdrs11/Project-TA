@@ -119,6 +119,10 @@
                     {{ __('Kelola Rekomendasi') }}
                 </x-nav-link>
 
+                <x-nav-link :href="route('SistemPakar.pengguna.konsultasi')" :active="request()->routeIs('SistemPakar.pengguna.konsultasi')">
+                    {{ __('Konsultasi') }}
+                </x-nav-link>
+
             </div>
         </div>
     </div>
@@ -179,9 +183,13 @@
                 {{ __('Kelola Aturan') }}
             </x-responsive-nav-link>
             
-            {{-- <x-responsive-nav-link :href="route('SistemPakar.admin.kelola_rekomendasi')" :active="request()->routeIs('SistemPakar.admin.kelola_rekomendasi')">
+            <x-responsive-nav-link :href="route('SistemPakar.admin.kelola_rekomendasi')" :active="request()->routeIs('SistemPakar.admin.kelola_rekomendasi')">
                 {{ __('Kelola Rekomendasi') }}
-            </x-responsive-nav-link> --}}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('SistemPakar.pengguna.konsultasi')" :active="request()->routeIs('SistemPakar.pengguna.konsultasi')">
+                {{ __('Konsultasi') }}
+            </x-responsive-nav-link>
 
         </div>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\GdController;
 use App\Http\Controllers\ImtController;
 use App\Http\Controllers\KmController;
+use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecommendController;
 use App\Http\Controllers\RuleController;
@@ -81,5 +82,12 @@ Route::get('/SistemPakar/admin/kelola_rekomendasi/{id}/edit', [RecommendControll
 Route::match(['put', 'patch'],'/SistemPakar/admin/kelola_rekomendasi/{id}', [RecommendController::class, 'update'])->name('SistemPakar.admin.kelola_rekomendasi.update');
 Route::delete('/SistemPakar/admin/kelola_rekomendasi/{id}', [RecommendController::class, 'destroy'])->name('SistemPakar.admin.kelola_rekomendasi.destroy');
 
+// Route::middleware(['auth', 'role:2'])->group(function () {
+//     Route::get('/SistemPakar/pengguna/konsultasi', [KonsultasiController::class, 'index'])->name('SistemPakar.pengguna.konsultasi');
+//     Route::post('/SistemPakar/pengguna/konsultasi', [KonsultasiController::class, 'store'])->name('SistemPakar.pengguna.konsultasi.store');
+// });
+
+Route::get('/SistemPakar/pengguna/konsultasi', [KonsultasiController::class, 'index'])->name('SistemPakar.pengguna.konsultasi');
+Route::post('/SistemPakar/pengguna/konsultasi', [KonsultasiController::class, 'store'])->name('SistemPakar.pengguna.konsultasi.store');
 
 require __DIR__.'/auth.php';

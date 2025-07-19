@@ -17,7 +17,7 @@ class DetailRekomendasi extends Model
 
     public function food(): BelongsTo
     {
-        return $this->belongsTo(Food::class);
+        return $this->belongsTo(Food::class, 'food_id');
     }
 
     public function recommend(): BelongsTo
