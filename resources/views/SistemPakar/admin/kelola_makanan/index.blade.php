@@ -25,6 +25,7 @@
                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">No</th>
                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Nama Makanan</th>
                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Kategori</th>
+                                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Keterangan</th>
                                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Aksi</th>
                                   </tr>
                                 </thead>
@@ -35,6 +36,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{{ $num++ }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ $food->nama_makanan }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ $food->kategori->nama_kategori }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ $food->keterangan }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                         <div x-data="{ action: '' }">
                                             <x-primary-button tag="a" href="{{ route('SistemPakar.admin.kelola_makanan.edit', ['id' => $food->id]) }}"> Edit </x-primary-button>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_makanan');
             $table->foreignId('food_categorie_id')->constrained('food_categories')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

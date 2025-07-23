@@ -34,12 +34,12 @@
                         </div>
 
 
-                        {{-- <div class="max-w-xl">
-                            <x-input-label for="kategori" value="Kategori" />
-                            <x-text-input id="kategori" type="text" name="kategori" class="mt-1 block w-full" value="{{ old('kategori') }}" required />
-                            <x-input-error class="mt-2" :messages="$errors->get('kategori')" />
+                        <div class="max-w-xl">
+                            <x-input-label for="keterangan" value="Keterangan" />
+                            <x-text-input id="keterangan" type="text" name="keterangan" class="mt-1 block w-full" value="{{ old('keterangan') }}" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('keterangan')" />
                         </div>
-                        <br> --}}
+                        <br>
 
                         {{-- <div class="max-w-xl">
                             <x-input-label for="phone_number" value="Nomor Perusahaan" />

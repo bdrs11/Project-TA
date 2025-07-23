@@ -10,29 +10,74 @@
             <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <p><strong>Usia:</strong> {{ $rule->ageCategory->rentan_usia }}</p>
-                    <p><strong>Berat Badan:</strong> {{ $berat }}</p>
-                    <p><strong>Tinggi Badan:</strong> {{ $tinggi }}</p>
-                    <p><strong>IMT Anda:</strong> {{ $imt }}</p>
-                    <p><strong>Aktivitas Fisik:</strong> {{ $rule->activity->kategori }}</p>
-                    <p><strong>Kaadar Gula Darah:</strong> {{ $rule->sugarCategory->rentan }}</p>
-                    <p><strong>Keterangan:</strong> {{ $rule->keterangan }}</p>
+                    <!-- Awal Form -->
+                    <form action="#" method="POST">
+                        @csrf
+                        <!-- Jika ingin dikirim, sesuaikan action dan method -->
 
-                    <h3 class="mt-4 font-semibold">Rekomendasi Makanan:</h3>
-                    <ul class="list-disc ml-6 mt-2">
-                        @foreach ($detail_rekomendasi as $detail)
-                            <li>
-                                {{ $detail->food->nama_makanan }} 
-                                @if($detail->keterangan)
-                                    - {{ $detail->keterangan }}
-                                @endif
-                            </li>
-                        @endforeach
-                    </ul>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-medium">Usia</label>
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $rule->ageCategory->rentan_usia }}">
+                            </div>
 
-                    <div class="mt-6">
-                        <a href="{{ route('SistemPakar.pengguna.konsultasi') }}" class="text-blue-600 hover:underline">Kembali ke Form</a>
-                    </div>
+                            <div>
+                                <label class="block font-medium">Berat Badan</label>
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $berat }}">
+                            </div>
+
+                            <div>
+                                <label class="block font-medium">Tinggi Badan</label>
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $tinggi }}">
+                            </div>
+
+                            <div>
+                                <label class="block font-medium">IMT Anda</label>
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $imt }}">
+                            </div>
+
+                            <div>
+                                <label class="block font-medium">Aktivitas Fisik</label>
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $rule->activity->kategori }}">
+                            </div>
+
+                            <div>
+                                <label class="block font-medium">Kadar Gula Darah</label>
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $rule->sugarCategory->rentan }}">
+                            </div>
+
+                            <div class="md:col-span-2">
+                                <label class="block font-medium">Keterangan</label>
+                                <textarea readonly class="w-full border-gray-300 rounded-md" rows="2">{{ $rule->keterangan }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 text-center">
+                            <label class="block font-semibold mb-2">Rekomendasi Makanan:</label>
+                            
+                            <div class="inline-block text-left">
+                                <ul class="list-disc pl-6">
+                                    @foreach ($detail_rekomendasi as $detail)
+                                        <li>
+                                            {{ $detail->food->nama_makanan }} 
+                                            @if($detail->keterangan)
+                                                - {{ $detail->keterangan }}
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="flex justify-end mt-6">
+                            <a href="{{ route('SistemPakar.pengguna.konsultasi') }}" class="text-blue-600 hover:underline font-semibold">
+                                Kembali
+                            </a>
+                        </div>
+
+                    </form>
+                    <!-- Akhir Form -->
 
                 </div>
             </div>

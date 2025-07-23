@@ -29,13 +29,12 @@ class GdController extends Controller
         $sugar_categorie = GD::create($validatedData);
 
         if ($sugar_categorie) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menambahkan Gula Darah';
-            return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula')->with($notification);
+            return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula')
+                ->with('success', 'Berhasil Menambahkan Gula Darah');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menambahkan Gula Darah';
-            return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula.store')->withInput()->with($notification);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal Menambahkan Gula Darah');
         }
     }
 
@@ -55,17 +54,15 @@ class GdController extends Controller
         ]);
 
         $sugar_categorie = GD::findOrFail($id);
+        $updated = $sugar_categorie->update($validatedData);
 
-        $sugar_categorie->update($validatedData);
-
-        if ($sugar_categorie) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Mengubah Data Gula Darah';
-            return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula')->with($notification);
+        if ($updated) {
+            return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula')
+                ->with('success', 'Berhasil Mengubah Data Gula Darah');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Mengubah Data Gula Darah';
-            return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula.update')->withInput()->with($notification);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal Mengubah Data Gula Darah');
         }
     }
 
@@ -75,14 +72,12 @@ class GdController extends Controller
         $deleted = $sugar_categorie->delete(); 
     
         if ($deleted) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menghapus Data Gula Darah';
+            return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula')
+                ->with('success', 'Berhasil Menghapus Data Gula Darah');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menghapus Data Gula Darah';
+            return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula')
+                ->with('error', 'Gagal Menghapus Data Gula Darah');
         }
-    
-        return redirect()->route('SistemPakar.admin.kelola_dm.kadar_gula')->with($notification);
     }    
 
     public function display()

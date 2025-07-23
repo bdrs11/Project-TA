@@ -27,13 +27,12 @@ class KmController extends Controller
         $food_categorie = Km::create($validatedData);
 
         if ($food_categorie) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menambahkan Kategori Makanan';
-            return redirect()->route('SistemPakar.admin.kelola_makanan.kategori')->with($notification);
+            return redirect()->route('SistemPakar.admin.kelola_makanan.kategori')
+                ->with('success', 'Berhasil menambahkan kategori makanan.');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menambahkan Kategori Makanan';
-            return redirect()->route('SistemPakar.admin.kelola_makanan.kategori.store')->withInput()->with($notification);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal menambahkan kategori makanan.');
         }
     }
 
@@ -51,17 +50,15 @@ class KmController extends Controller
         ]);
 
         $food_categorie = Km::findOrFail($id);
+        $updated = $food_categorie->update($validatedData);
 
-        $food_categorie->update($validatedData);
-
-        if ($food_categorie) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Mengubah Data Kategori Makanana';
-            return redirect()->route('SistemPakar.admin.kelola_makanan.kategori')->with($notification);
+        if ($updated) {
+            return redirect()->route('SistemPakar.admin.kelola_makanan.kategori')
+                ->with('success', 'Berhasil mengubah data kategori makanan.');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Mengubah Data Kategori Makanan';
-            return redirect()->route('SistemPakar.admin.kelola_makanan.kategori.update')->withInput()->with($notification);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal mengubah data kategori makanan.');
         }
     }
 
@@ -71,14 +68,12 @@ class KmController extends Controller
         $deleted = $food_categorie->delete(); 
     
         if ($deleted) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menghapus Data Kategori Makanan';
+            return redirect()->route('SistemPakar.admin.kelola_makanan.kategori')
+                ->with('success', 'Berhasil menghapus data kategori makanan.');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menghapus Data Kategori Makanan';
+            return redirect()->route('SistemPakar.admin.kelola_makanan.kategori')
+                ->with('error', 'Gagal menghapus data kategori makanan.');
         }
-    
-        return redirect()->route('SistemPakar.admin.kelola_makanan.kategori')->with($notification);
     }    
 
     public function display()

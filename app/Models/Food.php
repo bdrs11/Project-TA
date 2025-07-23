@@ -10,6 +10,7 @@ class Food extends Model
     protected $fillable = [
         'nama_makanan',
         'food_categorie_id',
+        'keterangan',
         'user_id',
     ];
 

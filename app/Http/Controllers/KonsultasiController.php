@@ -11,11 +11,16 @@ use App\Models\Recommend;
 use App\Models\Rule;
 use App\Models\Usia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KonsultasiController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->role_id != 2) {
+        abort(403, 'Akses hanya untuk pengguna.');
+        }
+        
         $age_categories = Usia::all();
         $activitys = AF::all();
         $sugar_categories = GD::all();
@@ -26,6 +31,10 @@ class KonsultasiController extends Controller
 
     public function store(Request $request)
     {
+        if (Auth::user()->role_id != 2) {
+            abort(403, 'Akses hanya untuk pengguna.');
+        }
+
         $request->validate([
             'usia' => 'required|exists:age_categories,id',
             'aktivitas_fisik' => 'required|exists:activitys,id',
@@ -102,6 +111,7 @@ class KonsultasiController extends Controller
         $first_detail = $detail_rekomendasi->first();
 
         Konsultasi::create([
+            'user_id' => Auth::id(),
             'usia' => $request->usia,
             'berat_badan' => $request->berat_badan,
             'tinggi_badan' => $request->tinggi_badan,

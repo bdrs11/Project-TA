@@ -42,13 +42,12 @@ class RuleController extends Controller
         $rule = Rule::create($validatedData);
 
         if ($rule) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menambahkan Aturan';
-            return redirect()->route('SistemPakar.admin.kelola_aturan')->with($notification);
+            return redirect()->route('SistemPakar.admin.kelola_aturan')
+                ->with('success', 'Berhasil Menambahkan Aturan');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menambahkan Aturan';
-            return redirect()->route('SistemPakar.admin.kelola_aturan.store')->withInput()->with($notification);
+            return redirect()->route('SistemPakar.admin.kelola_aturan.create')
+                ->withInput()
+                ->with('error', 'Gagal Menambahkan Aturan');
         }
     }
 
@@ -74,17 +73,15 @@ class RuleController extends Controller
         ]);
 
         $rule = Rule::findOrFail($id);
+        $updated = $rule->update($validatedData);
 
-        $rule->update($validatedData);
-
-        if ($rule) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Mengubah Data Aturan';
-            return redirect()->route('SistemPakar.admin.kelola_aturan')->with($notification);
+        if ($updated) {
+            return redirect()->route('SistemPakar.admin.kelola_aturan')
+                ->with('success', 'Berhasil Mengubah Data Aturan');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Mengubah Data Aturan';
-            return redirect()->route('SistemPakar.admin.kelola_aturan.update')->withInput()->with($notification);
+            return redirect()->route('SistemPakar.admin.kelola_aturan.edit', $id)
+                ->withInput()
+                ->with('error', 'Gagal Mengubah Data Aturan');
         }
     }
 
@@ -94,14 +91,12 @@ class RuleController extends Controller
         $deleted = $rule->delete(); 
     
         if ($deleted) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menghapus Data Aturan';
+            return redirect()->route('SistemPakar.admin.kelola_aturan')
+                ->with('success', 'Berhasil Menghapus Data Aturan');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menghapus Data Aturan';
+            return redirect()->route('SistemPakar.admin.kelola_aturan')
+                ->with('error', 'Gagal Menghapus Data Aturan');
         }
-    
-        return redirect()->route('SistemPakar.admin.kelola_aturan')->with($notification);
     }    
 
     public function display()

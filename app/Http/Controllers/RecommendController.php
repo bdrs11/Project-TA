@@ -32,7 +32,7 @@ class RecommendController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'rule_id' => 'required|exists:rules,id',
             'food_id' => 'required|array',
             'food_id.*' => 'exists:foods,id',
@@ -53,8 +53,16 @@ class RecommendController extends Controller
             ]);
         }
 
-        return redirect()->route('SistemPakar.admin.kelola_rekomendasi')
-            ->with('success', 'Rekomendasi berhasil ditambahkan.');
+        $rekomendasi = Recommend::create($validatedData);
+
+        if ($rekomendasi) {
+            return redirect()->route('SistemPakar.admin.kelola_rekomendasi')
+                ->with('success', 'Berhasil Menambahkan Rekomendasi');
+        } else {
+            return redirect()->route('SistemPakar.admin.kelola_rekomendasi.create')
+                ->withInput()
+                ->with('error', 'Gagal Menambahkan Rekomendasi');
+        }
     }
 
     public function edit($id)
@@ -68,7 +76,7 @@ class RecommendController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'rule_id' => 'required|exists:rules,id',
             'food_id' => 'required|array|min:1',
             'food_id.*' => 'exists:foods,id',
@@ -93,8 +101,17 @@ class RecommendController extends Controller
             ]);
         }
 
-        return redirect()->route('SistemPakar.admin.kelola_rekomendasi')
-                        ->with('success', 'Berhasil memperbarui rekomendasi.');
+        $rekomendasi = Recommend::findOrFail($id);
+        $updated = $rekomendasi->update($validatedData);
+
+        if ($updated) {
+            return redirect()->route('SistemPakar.admin.kelola_rekomendasi')
+                ->with('success', 'Berhasil Mengubah Data Rekomendasi');
+        } else {
+            return redirect()->route('SistemPakar.admin.kelola_rekomendasi.edit', $id)
+                ->withInput()
+                ->with('error', 'Gagal Mengubah Data Rekomendasi');
+        }
     }
 
     public function destroy($id) 
@@ -103,14 +120,12 @@ class RecommendController extends Controller
         $deleted = $recommendations->delete(); 
     
         if ($deleted) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menghapus Data Rekomendasi';
+            return redirect()->route('SistemPakar.admin.kelola_rekomendasi')
+                ->with('success', 'Berhasil menghapus data rekomendasi.');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menghapus Data Rekomendasi';
+            return redirect()->route('SistemPakar.admin.kelola_rekomendasi')
+                ->with('error', 'Gagal menghapus data rekomendasi.');
         }
-    
-        return redirect()->route('SistemPakar.admin.kelola_rekomendasi')->with($notification);
     }    
 
     public function display()

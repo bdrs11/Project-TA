@@ -31,11 +31,11 @@
                             <x-input-error class="mt-2" :messages="$errors->get('food_categorie_id')" />
                         </div>
 
-                        {{-- <div class="max-w-xl">
-                            <x-input-label for="kategori" value="Kategori" />
-                            <x-text-input id="kategori" type="text" name="kategori" class="mt-1 block w-full" value="{{ old('kategori', $food->kategori) }}" required />
-                            <x-input-error class="mt-2" :messages="$errors->get('kategori')" />
-                        </div> --}}
+                        <div class="max-w-xl">
+                            <x-input-label for="keterangan" value="Keterangan" />
+                            <x-text-input id="keterangan" type="text" name="keterangan" class="mt-1 block w-full" value="{{ old('keterangan', $food->keterangan) }}" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('keterangan')" />
+                        </div>
 
                         {{-- <div class="max-w-xl">
                             <x-input-label for="phone_number" value="No Hp" />

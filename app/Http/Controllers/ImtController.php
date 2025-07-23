@@ -29,13 +29,12 @@ class ImtController extends Controller
         $imt_categorie = Imt::create($validatedData);
 
         if ($imt_categorie) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menambahkan IMT';
-            return redirect()->route('SistemPakar.admin.kelola_dm.imt')->with($notification);
+            return redirect()->route('SistemPakar.admin.kelola_dm.imt')
+                ->with('success', 'Berhasil menambahkan kategori IMT.');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menambahkan IMT';
-            return redirect()->route('SistemPakar.admin.kelola_dm.imt.store')->withInput()->with($notification);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal menambahkan kategori IMT.');
         }
     }
 
@@ -55,17 +54,15 @@ class ImtController extends Controller
         ]);
 
         $imt_categorie = Imt::findOrFail($id);
+        $updated = $imt_categorie->update($validatedData);
 
-        $imt_categorie->update($validatedData);
-
-        if ($imt_categorie) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Mengubah Data IMT';
-            return redirect()->route('SistemPakar.admin.kelola_dm.imt')->with($notification);
+        if ($updated) {
+            return redirect()->route('SistemPakar.admin.kelola_dm.imt')
+                ->with('success', 'Berhasil mengubah data IMT.');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Mengubah Data IMT';
-            return redirect()->route('SistemPakar.admin.kelola_dm.imt.update')->withInput()->with($notification);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal mengubah data IMT.');
         }
     }
 
@@ -75,14 +72,12 @@ class ImtController extends Controller
         $deleted = $imt_categorie->delete(); 
     
         if ($deleted) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menghapus Data IMT';
+            return redirect()->route('SistemPakar.admin.kelola_dm.imt')
+                ->with('success', 'Berhasil menghapus data IMT.');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menghapus Data IMT';
+            return redirect()->route('SistemPakar.admin.kelola_dm.imt')
+                ->with('error', 'Gagal menghapus data IMT.');
         }
-    
-        return redirect()->route('SistemPakar.admin.kelola_dm.imt')->with($notification);
     }    
 
     public function display()

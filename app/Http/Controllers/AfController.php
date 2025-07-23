@@ -28,13 +28,12 @@ class AfController extends Controller
         $activity = AF::create($validatedData);
 
         if ($activity) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menambahkan AKtifitas Fisik';
-            return redirect()->route('SistemPakar.admin.kelola_dm.af')->with($notification);
+            return redirect()->route('SistemPakar.admin.kelola_dm.af')
+                ->with('success', 'Berhasil Menambahkan Aktivitas Fisik');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menambahkan Aktivitas Fisik';
-            return redirect()->route('SistemPakar.admin.kelola_dm.af.store')->withInput()->with($notification);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal Menambahkan Aktivitas Fisik');
         }
     }
 
@@ -53,34 +52,30 @@ class AfController extends Controller
         ]);
 
         $activity = AF::findOrFail($id);
+        $updated = $activity->update($validatedData);
 
-        $activity->update($validatedData);
-
-        if ($activity) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Mengubah Data Aktivitas Fisik';
-            return redirect()->route('SistemPakar.admin.kelola_dm.af')->with($notification);
+        if ($updated) {
+            return redirect()->route('SistemPakar.admin.kelola_dm.af')
+                ->with('success', 'Berhasil Mengubah Data Aktivitas Fisik');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Mengubah Data Aktivitas Fisik';
-            return redirect()->route('SistemPakar.admin.kelola_dm.af.update')->withInput()->with($notification);
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal Mengubah Data Aktivitas Fisik');
         }
     }
 
     public function destroy($id) 
     {
         $activity = AF::findOrFail($id);
-        $deleted = $activity->delete(); 
-    
+        $deleted = $activity->delete();
+
         if ($deleted) {
-            $notification['alert-type'] = 'success';
-            $notification['message'] = 'Berhasil Menghapus Data Aktivitas Fisik';
+            return redirect()->route('SistemPakar.admin.kelola_dm.af')
+                ->with('success', 'Berhasil Menghapus Data Aktivitas Fisik');
         } else {
-            $notification['alert-type'] = 'error';
-            $notification['message'] = 'Gagal Menghapus Data Aktivitas Fisik';
+            return redirect()->route('SistemPakar.admin.kelola_dm.af')
+                ->with('error', 'Gagal Menghapus Data Aktivitas Fisik');
         }
-    
-        return redirect()->route('SistemPakar.admin.kelola_dm.af')->with($notification);
     }    
 
     public function display()
