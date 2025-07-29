@@ -38,19 +38,19 @@
 
                         <br>
 
-                        {{-- Pilih Makanan --}}
+                            {{-- Pilih Makanan --}}
                         <div class="max-w-xl">
                             <x-input-label for="food_select" value="Pilih Makanan" />
-                            <select id="food_select" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                                <option value="">-- Pilih Makanan --</option>
-                                @foreach($foods as $food)
-                                    <option value="{{ $food->id }}">{{ $food->nama_makanan }}</option>
-                                @endforeach
-                            </select>
-                            <x-secondary-button type="button" class="mt-2" onclick="tambahMakanan()">Tambah</x-secondary-button>
+                            <div class="flex space-x-2 mt-1">
+                                <select id="food_select" class="block w-full border-gray-300 rounded-md shadow-sm">
+                                    <option value="">-- Pilih Makanan --</option>
+                                    @foreach($foods as $food)
+                                        <option value="{{ $food->id }}">{{ $food->nama_makanan }}</option>
+                                    @endforeach
+                                </select>
+                                <x-secondary-button type="button" onclick="tambahMakanan()">Tambah</x-secondary-button>
+                            </div>
                         </div>
-
-                        <br>
 
                         {{-- List makanan yang dipilih --}}
                         <div class="max-w-xl mt-4">

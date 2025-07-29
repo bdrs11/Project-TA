@@ -72,7 +72,7 @@
                         </div>
 
                         <x-primary-button name="save" value="true">Simpan</x-primary-button>
-                        <x-secondary-button tag="a" href="{{ route('SistemPakar.admin.kelola_makanan') }}">Kembali</x-secondary-button>
+                        <x-secondary-button tag="a" href="{{ route('SistemPakar.admin.kelola_aturan') }}">Kembali</x-secondary-button>
                     </form>
 
                 </div>

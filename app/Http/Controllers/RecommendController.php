@@ -53,8 +53,6 @@ class RecommendController extends Controller
             ]);
         }
 
-        $rekomendasi = Recommend::create($validatedData);
-
         if ($rekomendasi) {
             return redirect()->route('SistemPakar.admin.kelola_rekomendasi')
                 ->with('success', 'Berhasil Menambahkan Rekomendasi');

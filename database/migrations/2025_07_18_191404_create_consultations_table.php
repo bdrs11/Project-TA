@@ -19,7 +19,8 @@ return new class extends Migration
             $table->integer('tinggi_badan');
             $table->string('aktivitas_fisik');
             $table->string('kadar_gula');
-            $table->foreignId('rekomendasi_id')->constrained('recommendations')->onDelete('cascade');
+            // $table->foreignId('rekomendasi_id')->constrained('recommendations')->onDelete('cascade');
+            $table->foreignId('detail_id')->constrained('detail_recommendations')->onDelete('cascade');
             $table->timestamps();
         });
     }

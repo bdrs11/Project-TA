@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-center text-gray-800 leading-tight">
-            Hasil Rekomendasi Pola Makan
+            Hasil Konsultasi
         </h2>
     </x-slot>
 
@@ -18,17 +18,17 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block font-medium">Usia</label>
-                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $rule->ageCategory->rentan_usia }}">
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $rule->ageCategory->rentan_usia }} tahun">
                             </div>
 
                             <div>
                                 <label class="block font-medium">Berat Badan</label>
-                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $berat }}">
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $berat }} kg">
                             </div>
 
                             <div>
                                 <label class="block font-medium">Tinggi Badan</label>
-                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $tinggi }}">
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $tinggi }} cm">
                             </div>
 
                             <div>
@@ -43,7 +43,7 @@
 
                             <div>
                                 <label class="block font-medium">Kadar Gula Darah</label>
-                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $rule->sugarCategory->rentan }}">
+                                <input type="text" readonly class="w-full border-gray-300 rounded-md" value="{{ $rule->sugarCategory->rentan }} mg/dL">
                             </div>
 
                             <div class="md:col-span-2">

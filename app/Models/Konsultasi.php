@@ -14,12 +14,13 @@ class Konsultasi extends Model
         'tinggi_badan',
         'aktivitas_fisik',
         'kadar_gula',
+        'rule_id',
         'detail_id',
         'recommendation_id'
     ];
 
     // Relasi ke detail rekomendasi
-    public function detailRecommendation()
+    public function detail()
     {
         return $this->belongsTo(DetailRekomendasi::class, 'detail_id');
     }
@@ -48,5 +49,10 @@ class Konsultasi extends Model
     public function gulaDarah()
     {
         return $this->belongsTo(GD::class, 'kadar_gula');
+    }
+
+    public function rule()
+    {
+        return $this->belongsTo(Rule::class, 'rule_id'); 
     }
 }

@@ -26,7 +26,7 @@
         
         <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <div class="bg-purple-100 rounded-lg p-4 shadow">
-                <h2 class="text-xl font-semibold text-gray-800">Admin</h2>
+                <h2 class="text-xl font-semibold text-gray-800">Staff Kepakaran</h2>
                 <p class="text-3xl">{{ $totalAdmin }}</p>
             </div>
             <div class="bg-pink-100 rounded-lg p-4 shadow">
@@ -41,7 +41,7 @@
         <x-slot name="header">
             <div class="w-full text-center">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    {{ __('Informasi Diabetes') }}
+                    {{ __('') }}
                 </h2>
             </div>
         </x-slot>
